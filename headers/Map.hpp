@@ -10,4 +10,10 @@ class Map {
             allInstance.push_back(Location::Manhatan);
             allInstance.push_back(Location::Ghetto);
         }
+        void roll_instance(const Location& current_location){
+            for(auto instance : allInstance){
+                if(instance.get_name() == current_location)
+                    instance.init_or_update();
+            }
+        }
 };
