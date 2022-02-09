@@ -17,6 +17,30 @@
         ShowMap,
         ExitGame
     };
+
+    inline ostream& operator<<(ostream& os, const InstanceState& state){
+        switch (state){
+            case InstanceState::ListDrugs:
+                os << "List drugs: ";
+                break;
+            case InstanceState::BuyDrug:
+                os << "Buy drugs: ";
+                break;
+            case InstanceState::SellDrug:
+                os << "Sell drugs: ";
+                break;
+            case InstanceState::ShowPlayer:
+                os << "Show player stuff: ";
+                break;
+            case InstanceState::ShowMap:
+                os << "Show map location: ";
+                break;
+            case InstanceState::ExitGame:
+                os << "Exit game.";
+                break;
+        }
+    }
+
     enum class InstanceStateTrigger {
         ToListDrug,
         ToBuyDrug,
@@ -25,6 +49,31 @@
         ToShowMap,
         ToExit
     };
+
+    inline ostream& operator<<(ostream& os, const InstanceStateTrigger& state_trigger){
+        switch (state_trigger) {
+            case InstanceStateTrigger::ToListDrug:
+                os << "List drugs.";
+                break;
+            case InstanceStateTrigger::ToBuyDrug:
+                os << "To buy.";
+                break;
+            case InstanceStateTrigger::ToSellDrug:
+                os << "To sell.";
+                break;
+            case InstanceStateTrigger::ToShowPlayer:
+                os << "To show player stuff.";
+                break;
+            case InstanceStateTrigger::ToShowMap:
+                os << "To show map locations.";
+                break;
+            case InstanceStateTrigger::ToExit:
+                os << "To exit game.";
+                break;
+        }
+        return os;
+    }
+
     enum class Location {
         Bronx,
         Brooklyn,
