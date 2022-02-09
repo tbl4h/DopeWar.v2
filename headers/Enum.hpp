@@ -1,4 +1,6 @@
     #pragma once
+    #include <iostream>
+    using namespace std;
     enum class Drugs
     {
         Cocaine,
@@ -12,7 +14,8 @@
         BuyDrug,
         SellDrug,
         ShowPlayer,
-        ShowMap
+        ShowMap,
+        ExitGame
     };
     enum class InstanceStateTrigger {
         ToListDrug,
@@ -20,6 +23,7 @@
         ToSellDrug,
         ToShowPlayer,
         ToShowMap,
+        ToExit
     };
     enum class Location {
         Bronx,
@@ -51,6 +55,9 @@
                 break;
             case Location::Player:
                 os << "You are look at yourself.";
+                break;
+            case Location::ExitGame:
+                os << "Exit Game.";
                 break;
         }
         return os;
@@ -85,6 +92,9 @@ inline ostream& operator<<(ostream& os , const LocationTrigger& trigger){
             break;
         case LocationTrigger::ToPlayer:
             os << "To player menu.";
+            break;
+        case LocationTrigger::ToExit:
+            os << "To exit.";
             break;
     }
     return os;
