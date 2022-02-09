@@ -1,4 +1,5 @@
-    enum Drugs
+    #pragma once
+    enum class Drugs
     {
         Cocaine,
         Heroine,
@@ -7,9 +8,18 @@
         count
     };
 
-    enum Location {
+    enum class Location {
         Bronx,
         Brooklyn,
         Manhatan,
-        Ghetto
+        Ghetto,
+        count
+    };
+
+    enum class LocationTrigger {
+        ToBronx,
+        ToBrooklyn,
+        ToManhatan,
+        ToGhetto,
+        ToLocation
     };

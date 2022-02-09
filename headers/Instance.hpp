@@ -71,9 +71,10 @@ public:
     DrugsList drugList;
     void init_or_update()
     {
-        while (drugList.size() <= 2)
+        int drugs_in_instance = roll_number(3,static_cast<int>(Drugs::count)-1);
+        while (drugList.size() <= drugs_in_instance)
         {
-            Drugs tmp = static_cast<Drugs>(roll_number(0, Drugs::count - 1));
+            Drugs tmp = static_cast<Drugs>(roll_number(0, static_cast<int>(Drugs::count) - 1));
             drugList.add_drug(named_drugs(tmp));
         }
         for (auto o : drugList)
@@ -82,6 +83,9 @@ public:
             o.set_price(price);
             o.set_amount(1000);
         }
+    }
+    Instance(Location &&location_):   location_name{move(location_)}{
+        init_or_update();
     }
     void set_name(Location name_)
     {
