@@ -9,4 +9,6 @@ class Game {
     Map game_map;
     Instance current_instance;
     map<Location, vector<pair<LocationTrigger, Location>>> map_rules;
+    public: 
+    Game(): current_instance{Location::Ghetto}{};
 };
