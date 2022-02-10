@@ -3,7 +3,7 @@
 #include <Enum.hpp>
 #include <Instance.hpp>
 #include <map>
-
+#include "./Commands/FactoryCommand.hpp"
 class Game
 {
     Player player;
@@ -13,6 +13,7 @@ class Game
     Location exit_game_location = Location::ExitGame;
     InstanceState current_state = InstanceState::ListDrugs;
     InstanceState exit_game_state = InstanceState::ExitGame;
+    CommandFactory command_factory;
     map<Location, vector<pair<LocationTrigger, Location>>> map_rules;
     map<InstanceState, vector<pair<InstanceStateTrigger, InstanceState>>> instance_rules;
     void init_map_rules()
@@ -153,6 +154,7 @@ public:
                              << "\n";
                         goto select_state_trigger;
                     }
+
                 }
                 if (current_location == exit_game_location)
                     exit(0);

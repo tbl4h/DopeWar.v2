@@ -29,6 +29,18 @@ private:
         else
             return false;
     }
+    bool is_drug_exist(string &obj)
+    {
+        auto res = find_if(drugsList.begin(), drugsList.end(), [&obj](Drug &current)
+                           {
+                if(obj == current.get_name())
+                   return true;
+                return false; });
+        if (res != drugsList.end())
+            return true;
+        else
+            return false;
+    }
 
 public:
     DrugsList() = default;
@@ -39,6 +51,13 @@ public:
     {
         if (!is_drug_exist(obj))
             drugsList.push_back(move(obj));
+    }
+    void add_or_update_drug(Drug &obj)
+    {
+        if (!is_drug_exist(obj))
+            drugsList.push_back(move(obj));
+        else 
+            update_drug(obj);
     }
     void add_drug(Drug &&obj)
     {
@@ -129,28 +148,50 @@ public:
     {
         for (const auto o : drugsList)
         {
-            if (o.get_name() == obj.get_name())
+            if (o.get_name() == obj.get_name() &&
+                o.get_price() == obj.get_price())
             {
                 Drug tmp = o;
                 tmp.set_amount(obj.get_amount());
                 return tmp;
             }
         }
+        return Drug{"empty", 0, 0};
     }
     int buy_drug(Drug &obj)
     {
-        for (const auto o : drugsList)
+        if (obj.get_name() != "empty")
         {
-            if (o.get_name() == obj.get_name())
+            for (const auto o : drugsList)
             {
-                int maney = obj.get_amount() * o.get_price();
-                return maney;
+                if (o.get_name() == obj.get_name())
+                {
+                    int maney = obj.get_amount() * o.get_price();
+                    return maney;
+                }
             }
         }
     }
-    void list_drugs(){
-        for(const auto o : drugsList){
-            cout << o.get_name() << " price: " << o.get_price() << " amount " << o.get_amount() << endl; 
+    void list_drugs()
+    {
+        for (const auto o : drugsList)
+        {
+            cout << o.get_name() << " price: " << o.get_price() << " amount " << o.get_amount() << endl;
+        }
+    }
+    Drug &get_drug(string name)
+    {
+        if (is_drug_exist(name))
+        {
+            for (auto drug : drugsList)
+            {
+                if (name == drug.get_name())
+                    return drug;
+            }
+        }
+        else
+        {
+            cout << "There is no drug to get." << endl;
         }
     }
 };

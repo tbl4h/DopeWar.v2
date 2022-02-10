@@ -11,7 +11,7 @@ class Drug
     int amount;
 
 public:
-    Drug() : name{"default"}, price{0}, amount{0} {};
+    Drug() : name{"empty"}, price{0}, amount{0} {};
     Drug(string name_, int price_, int amount_) : name{name_}, price{price_}, amount{amount_} {};
     Drug(string name_) : name{name_}, price{0}, amount{0} {};
     Drug(const Drug &rhs) : name{rhs.get_name()}, price{rhs.get_price()}, amount{rhs.get_amount()} {}
